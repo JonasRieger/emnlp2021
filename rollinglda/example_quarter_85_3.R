@@ -28,7 +28,7 @@ sim_quarter_last = readRDS("rolling_quarter_1985-01-01_memory3/sim_quarter_last.
 
 fun = "cosine"
 
-pdf(file.path("figures" ,"rolling.pdf"), width = 4, height = 10)
+pdf(file.path("figures" ,"example_quarter_85_3.pdf"), width = 4, height = 10)
 
 for(i in 1:80){
   mytab = rbind(data.table(x = xquarter, y = tab[,i+1], type = NA, measure = "share"),
@@ -48,3 +48,6 @@ for(i in 1:80){
 }
 
 dev.off()
+
+fwrite(rbind(paste0("Topic ", 1:80), topWords(getTopics(lda), 50)),
+       "topwords_quarter_85_3.csv", col.names = FALSE)
